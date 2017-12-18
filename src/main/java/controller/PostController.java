@@ -33,8 +33,8 @@ public class PostController {
 		return q.getResultList();
 	}
 	
-	public List<Post> obtainAll(){
-		TypedQuery<Post> q = entityManager.createQuery("Select p from Post p order by p.id desc",Post.class);
+	public List<Post> obtainAll(User user){
+		TypedQuery<Post> q = entityManager.createQuery("Select p from Post p, Follower f where p.id = f.id and f.id = :user   order by p.id desc",Post.class);
 		return q.getResultList();
 	}
 
